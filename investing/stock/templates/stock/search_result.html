@@ -1,0 +1,44 @@
+{% extends "stock/header.html" %}
+
+{% block content %}
+
+<p>Showing results for: <strong>{{ symbol }}</strong></p>
+{% if name %}
+<p>Name: <strong>{{ name }}</strong></p>
+{% endif %}
+{% if cik %}
+<p>CIK: <strong>{{ cik }}</strong></p>
+{% endif %}
+{% if filings %}
+	<h3>Earnings</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Period</th>
+				<th scope="col">ROIC</th>
+				<th scope="col">Book Value</th>
+				<th scope="col">EPS</th>
+				<th scope="col">Sales</th>
+				<th scope="col">Cash</th>
+				<th scope="col">P/E</th>
+				<th scope="col">Source</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for report in filings %}
+			<tr>
+				<th scope="row">{{ report.period }}</th>
+				<td></td>
+				<td>{{ report.bookvalue }}</td>
+				<td>{{ report.eps }}</td>
+				<td>{{ report.sales }}</td>
+				<td>{{ report.cash }}</td>
+				<td></td>
+				<td><a href='{{ report.url }}' target="_blank">Source</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}
+
+{% endblock %}

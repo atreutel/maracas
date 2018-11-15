@@ -1,0 +1,10 @@
+{% block content %}
+<form id="search-form" class="md-form w-25 input-group" action="/results" method="get">
+	<input id="searchbox" type="text" name="symbol" class="form-control" placeholder="Stock Symbol" aria-label="Search">
+	<div class="input-group-append">
+		<span class="input-group-text">
+			<i class="fa fa-search" aria-hidden='true'></i>
+		</span>
+	</div>
+</form>
+{% endblock %}
