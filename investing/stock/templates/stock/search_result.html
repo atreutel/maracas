@@ -2,15 +2,16 @@
 
 {% block content %}
 
-<p>Showing results for: <strong>{{ symbol }}</strong></p>
-{% if name %}
-<p>Name: <strong>{{ name }}</strong></p>
-{% endif %}
-{% if cik %}
-<p>CIK: <strong>{{ cik }}</strong></p>
-{% endif %}
-{% if filings %}
-	<h3>Earnings</h3>
+{% if company %}
+<p>Showing results for: <strong>{{ company.symbol }}</strong></p>
+
+<p>Name: <strong>{{ company.name }}</strong></p>
+
+<p>CIK: <strong>{{ company.cik }}</strong></p>
+
+<p><strong><a href="{{ company.filingsquery }}" target="_blank">Filings search</a></strong></p>
+{% if company.reports %}
+	<h3>SEC Filings</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -25,7 +26,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for report in filings %}
+			{% for report in company.reports %}
 			<tr>
 				<th scope="row">{{ report.period }}</th>
 				<td></td>
@@ -39,6 +40,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+{% endif %}
 {% endif %}
 
 {% endblock %}

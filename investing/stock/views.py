@@ -13,13 +13,10 @@ def search(request) :
 		if not symbol:
 			error = True
 		else:
-			info = mitools.getCompanyFromSymbol(symbol)
-			if not info:
+			company = mitools.getCompanyFromSymbol(symbol)
+			if not company:
 				error = True
 			else:
-				name = info[0]
-				cik = info[1]
-				filings = mitools.getFilings(name,cik,4)
-				return render(request, 'stock/search_result.html', {'symbol':symbol, 'name':name, 'cik':cik, 'filings': filings})
+				return render(request, 'stock/search_result.html', {'company':company})
 
 	return render(request, 'stock/search_result.html', {'error': error})
